@@ -4,7 +4,7 @@ export default [
         data: {},
         items:
         [
-            { name: 'roomModel', source: '/assets/model/scene.gltf' },
+            { name: 'roomModel', source: '/assets/models/scene.gltf' },
         ]
     }
 ]

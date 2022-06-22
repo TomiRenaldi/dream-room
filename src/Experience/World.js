@@ -23,6 +23,7 @@ export default class World
     {
         this.room = {}
         this.room.model = this.resources.items.roomModel.scene
+
         this.scene.add(this.room.model)  
 
         this.lights = {}
