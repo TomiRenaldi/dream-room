@@ -14,20 +14,21 @@ export default class World
         {
             if(_group.name === 'base')
             {
-                this.setDummy()
+                this.setRoom()
             }
         })
     }
 
-    setDummy()
+    setRoom()
     {
-        this.resources.items.broccoliTexture.encoding = THREE.sRGBEncoding
-        
-        const cube = new THREE.Mesh(
-            new THREE.BoxGeometry(1, 1, 1),
-            new THREE.MeshBasicMaterial({ map: this.resources.items.broccoliTexture })
-        )
-        this.scene.add(cube)        
+        this.room = {}
+        this.room.model = this.resources.items.roomModel.scene
+        this.scene.add(this.room.model)  
+
+        this.lights = {}
+        this.lights.dir = new THREE.DirectionalLight('#ffffff', 10)
+        this.lights.dir.position.set(5, 5, 5)
+        this.scene.add(this.lights.dir)
     }
 
     resize()
