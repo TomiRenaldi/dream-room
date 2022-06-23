@@ -68,6 +68,8 @@ export default class Experience
         const boundings = this.targetElement.getBoundingClientRect()
         this.config.width = boundings.width
         this.config.height = boundings.height || window.innerHeight
+        this.config.smallestSide = Math.min(this.config.width, this.config.height)
+        this.config.largestSide = Math.max(this.config.width, this.config.height)
     }
 
     setDebug()
@@ -125,11 +127,14 @@ export default class Experience
         
         this.camera.update()
 
-        if(this.world)
-            this.world.update()
-        
         if(this.renderer)
             this.renderer.update()
+            
+        if(this.world)
+            this.world.update()
+            
+        if(this.navigation)
+            this.navigation.update()
 
         window.requestAnimationFrame(() =>
         {
@@ -143,6 +148,8 @@ export default class Experience
         const boundings = this.targetElement.getBoundingClientRect()
         this.config.width = boundings.width
         this.config.height = boundings.height
+        this.config.smallestSide = Math.min(this.config.width, this.config.height)
+        this.config.largestSide = Math.max(this.config.width, this.config.height)
 
         this.config.pixelRatio = Math.min(Math.max(window.devicePixelRatio, 1), 2)
 
