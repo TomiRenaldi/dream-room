@@ -27,7 +27,7 @@ export default class World
         this.scene.add(this.room.model)  
 
         this.lights = {}
-        this.lights.dir = new THREE.DirectionalLight('#ffffff', 1)
+        this.lights.dir = new THREE.DirectionalLight('#ffffff')
         this.lights.dir.position.set(5, 5, 5)
         this.scene.add(this.lights.dir)
     }

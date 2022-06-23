@@ -22,7 +22,7 @@ export default class Navigation
         this.view.spherical.smoothed = this.view.spherical.value.clone()
         this.view.spherical.smoothing = 0.005
 
-        this.view.target = new THREE.Vector3(3, 2, 2)
+        this.view.target = new THREE.Vector3(1.5, 0.8, 0)
 
         this.view.drag = {}
         this.view.drag.delta = {}
@@ -58,28 +58,33 @@ export default class Navigation
         }
 
         /**
-         * ,Mouse Events
-         */
-        this.view.onMouseDown = (_event) => 
-        {
-            this.view.down(_event.clientX, _event.clientY)
-
-            window.addEventListener('mouseup', this.view.onMouseup)
-            window.addEventListener('mousemove', this.view.onMouseMove)
-        }
-
-        this.view.onMouseMove = (_event) => 
-        {
-            this.view.move(_event.clientX, _event.clientY)
-        }
-
-        this.view.onMouseup = (_event) => 
+        * Mouse events
+        */
+        this.view.onMouseDown = (_event) =>
         {
             _event.preventDefault()
-            this.view.up()
+
+            this.view.down(_event.clientX, _event.clientY)
 
             window.addEventListener('mouseup', this.view.onMouseUp)
             window.addEventListener('mousemove', this.view.onMouseMove)
+        }
+
+        this.view.onMouseMove = (_event) =>
+        {
+            _event.preventDefault()
+
+            this.view.move(_event.clientX, _event.clientY)
+        }
+
+        this.view.onMouseUp = (_event) =>
+        {
+            _event.preventDefault()
+
+            this.view.up()
+
+            window.removeEventListener('mouseup', this.view.onMouseUp)
+            window.removeEventListener('mousemove', this.view.onMouseMove)
         }
 
         window.addEventListener('mousedown', this.view.onMouseDown)
