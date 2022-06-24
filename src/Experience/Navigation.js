@@ -29,6 +29,10 @@ export default class Navigation
         this.view.target.value = new THREE.Vector3(1.5, 0.8, 0)
         this.view.target.smoothed = this.view.target.value.clone()
         this.view.target.smoothing = 0.005
+        this.view.target.limits = {}
+        this.view.target.limits.x = { min: -3, max: 3 }
+        this.view.target.limits.y = { min: 1, max: 3 }
+        this.view.target.limits.z = { min: -3, max: 3 }
 
         this.view.drag = {}
         this.view.drag.delta = {}
@@ -79,7 +83,7 @@ export default class Navigation
         {
             _event.preventDefault()
 
-            this.view.drag.alternative = _event.button === 2
+            this.view.drag.alternative = _event.button === 2 || _event.ctrlKey || _event.shiftKey
 
             this.view.down(_event.clientX, _event.clientY)
 
@@ -183,6 +187,11 @@ export default class Navigation
 
             this.view.target.value.add(up)
             this.view.target.value.add(right)
+
+            // Limits
+            this.view.target.value.x = Math.min(Math.max(this.view.target.value.x, this.view.target.limits.x.min), this.view.target.limits.x.max)
+            this.view.target.value.y = Math.min(Math.max(this.view.target.value.y, this.view.target.limits.y.min), this.view.target.limits.y.max)
+            this.view.target.value.z = Math.min(Math.max(this.view.target.value.z, this.view.target.limits.z.min), this.view.target.limits.z.max)
         }
         else
         {
