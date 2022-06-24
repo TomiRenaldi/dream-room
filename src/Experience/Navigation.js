@@ -88,7 +88,48 @@ export default class Navigation
         }
 
         window.addEventListener('mousedown', this.view.onMouseDown)
-    }
+
+        /**
+        * Mouse events
+        */
+         this.view.onTouchStart = (_event) =>
+         {
+             _event.preventDefault()
+ 
+             this.view.down(_event.touches[0].clientX, _event.touches[0].clientY)
+ 
+             window.addEventListener('touchend', this.view.onTouchEnd)
+             window.addEventListener('touchmove', this.view.onTouchMove)
+         }
+ 
+         this.view.onTouchMove = (_event) =>
+         {
+             _event.preventDefault()
+ 
+             this.view.move(_event.touches[0].clientX, _event.touches[0].clientY)
+         }
+ 
+         this.view.onTouchEnd = (_event) =>
+         {
+             _event.preventDefault()
+ 
+             this.view.up()
+ 
+             window.removeEventListener('touchend', this.view.onTouchEnd)
+             window.removeEventListener('touchmove', this.view.onTouchMove)
+         }
+ 
+         window.addEventListener('touchstart', this.view.onTouchStart)
+
+        /**
+         * Context Menu
+         */
+         this.view.onContextMenu = (_event) =>
+         {
+             _event.preventDefault()
+         }
+         window.addEventListener('contextmenu', this.view.onContextMenu)
+     }
 
     update()
     {
