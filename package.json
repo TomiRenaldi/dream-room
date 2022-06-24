@@ -4,7 +4,7 @@
     "scripts": {
         "build": "webpack --config ./bundler/webpack.prod.js",
         "dev": "webpack serve --config ./bundler/webpack.dev.js",
-        "prod": "git switch prod; git merge main; git push; git switch main"
+        "prod": "git switch prod; git merge master; git push; git switch master"
     },
     "dependencies": {
         "@babel/core": "^7.17.10",

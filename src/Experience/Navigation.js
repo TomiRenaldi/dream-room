@@ -90,7 +90,7 @@ export default class Navigation
         window.addEventListener('mousedown', this.view.onMouseDown)
 
         /**
-        * Mouse events
+        * Touch events
         */
          this.view.onTouchStart = (_event) =>
          {
