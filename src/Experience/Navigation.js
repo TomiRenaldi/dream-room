@@ -30,9 +30,9 @@ export default class Navigation
         this.view.target.smoothed = this.view.target.value.clone()
         this.view.target.smoothing = 0.005
         this.view.target.limits = {}
-        this.view.target.limits.x = { min: -3, max: 3 }
-        this.view.target.limits.y = { min: 1, max: 3 }
-        this.view.target.limits.z = { min: -3, max: 3 }
+        this.view.target.limits.x = { min: -4, max: 4 }
+        this.view.target.limits.y = { min: 1, max: 4 }
+        this.view.target.limits.z = { min: -4, max: 4 }
 
         this.view.drag = {}
         this.view.drag.delta = {}
@@ -46,7 +46,7 @@ export default class Navigation
         this.view.drag.alternative = false
 
         this.view.zoom = {}
-        this.view.zoom.sensitivity = 0.01
+        this.view.zoom.sensitivity = 0.1
 
          /**
          * Methods

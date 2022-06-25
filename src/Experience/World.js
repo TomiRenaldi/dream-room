@@ -1,5 +1,6 @@
 import * as THREE from 'three'
 import Experience from './Experience.js'
+import BouncingLogo from './BouncingLogo.js'
 
 export default class World
 {
@@ -15,6 +16,7 @@ export default class World
             if(_group.name === 'base')
             {
                 this.setRoom()
+                this.setBouncingLogo()
             }
         })
     }
@@ -32,12 +34,19 @@ export default class World
         this.scene.add(this.lights.dir)
     }
 
+    setBouncingLogo()
+    {
+        this.bouncingLogo = new BouncingLogo()
+    }
+
     resize()
     {
     }
 
     update()
     {
+        if (this.bouncingLogo)
+            this.bouncingLogo.update()
     }
 
     destroy()

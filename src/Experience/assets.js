@@ -4,6 +4,7 @@ export default [
         data: {},
         items:
         [
+            { name: 'tomUnpredict', source: '/assets/tomunpredict.png', type: 'texture' },
             { name: 'roomModel', source: '/assets/models/room.glb' },
         ]
     }
