@@ -10,6 +10,7 @@ export default class Navigation
     {
         this.experience = new Experience()
         this.camera = this.experience.camera
+        this.targetElement = this.experience.targetElement
         this.config = this.experience.config
         this.time = this.experience.time
 
@@ -21,7 +22,7 @@ export default class Navigation
         this.view = {}
 
         this.view.spherical = {}
-        this.view.spherical.value = new THREE.Spherical(70, Math.PI * 0.30, Math.PI * 0.25)
+        this.view.spherical.value = new THREE.Spherical(70, Math.PI * 0.35, Math.PI * 0.25)
         this.view.spherical.smoothed = this.view.spherical.value.clone()
         this.view.spherical.smoothing = 0.005
 
@@ -83,7 +84,7 @@ export default class Navigation
         {
             _event.preventDefault()
 
-            this.view.drag.alternative = _event.button === 2 || _event.ctrlKey || _event.shiftKey
+            this.view.drag.alternative = _event.button === 2 || _event.button === 1 || _event.ctrlKey || _event.shiftKey
 
             this.view.down(_event.clientX, _event.clientY)
 
@@ -108,7 +109,7 @@ export default class Navigation
             window.removeEventListener('mousemove', this.view.onMouseMove)
         }
 
-        window.addEventListener('mousedown', this.view.onMouseDown)
+        this.targetElement.addEventListener('mousedown', this.view.onMouseDown)
 
         /**
         * Touch events
