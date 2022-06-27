@@ -1,7 +1,7 @@
 import * as THREE from 'three'
 import Experience from './Experience.js'
 import BouncingLogo from './BouncingLogo.js'
-import PCScreen from './PCScreen.js'
+import Screen from './Screen.js'
 
 export default class World
 {
@@ -18,7 +18,7 @@ export default class World
             {
                 this.setRoom()
                 this.setBouncingLogo()
-                this.setPCScreen()
+                this.setScreen()
             }
         })
     }
@@ -41,9 +41,12 @@ export default class World
         this.bouncingLogo = new BouncingLogo()
     }
 
-    setPCScreen()
+    setScreen()
     {
-        this.pcScreen = new PCScreen()
+        this.screen = new Screen(
+            this.resources.items.pcScreenModel.scene.children[0],
+            '/assets/mobilelegends-360fps-2000bit.mp4'
+        )
     }
 
     resize()
