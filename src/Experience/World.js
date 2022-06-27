@@ -1,5 +1,6 @@
 import * as THREE from 'three'
 import Experience from './Experience.js'
+import Room from './Room.js'
 import BouncingLogo from './BouncingLogo.js'
 import Screen from './Screen.js'
 
@@ -16,24 +17,16 @@ export default class World
         {
             if(_group.name === 'base')
             {
-                this.setRoom()
+                this.setRooms()
                 this.setBouncingLogo()
                 this.setScreen()
             }
         })
     }
 
-    setRoom()
+    setRooms()
     {
-        this.room = {}
-        this.room.model = this.resources.items.roomModel.scene
-
-        this.scene.add(this.room.model)  
-
-        this.lights = {}
-        this.lights.dir = new THREE.DirectionalLight('#ffffff')
-        this.lights.dir.position.set(5, 5, 5)
-        this.scene.add(this.lights.dir)
+        this.room = new Room()
     }
 
     setBouncingLogo()
@@ -55,6 +48,9 @@ export default class World
 
     update()
     {
+        if (this.room)
+            this.room.update()
+        
         if (this.bouncingLogo)
             this.bouncingLogo.update()
         

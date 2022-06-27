@@ -42,12 +42,9 @@ export default class Renderer
         this.instance.setPixelRatio(this.config.pixelRatio)
 
         this.instance.physicallyCorrectLights = true
-        // this.instance.gammaOutPut = true
         this.instance.outputEncoding = THREE.sRGBEncoding
-        // this.instance.shadowMap.type = THREE.PCFSoftShadowMap
-        // this.instance.shadowMap.enabled = false
-        this.instance.toneMapping = THREE.NoToneMapping
-        this.instance.toneMappingExposure = 1
+        this.instance.shadowMap.type = THREE.PCFSoftShadowMap
+        this.instance.shadowMap.enabled = false
 
         this.context = this.instance.getContext()
 
