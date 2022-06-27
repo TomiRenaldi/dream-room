@@ -1,6 +1,7 @@
 import * as THREE from 'three'
 import Experience from './Experience.js'
 import BouncingLogo from './BouncingLogo.js'
+import PCScreen from './PCScreen.js'
 
 export default class World
 {
@@ -17,6 +18,7 @@ export default class World
             {
                 this.setRoom()
                 this.setBouncingLogo()
+                this.setPCScreen()
             }
         })
     }
@@ -39,6 +41,11 @@ export default class World
         this.bouncingLogo = new BouncingLogo()
     }
 
+    setPCScreen()
+    {
+        this.pcScreen = new PCScreen()
+    }
+
     resize()
     {
     }
@@ -47,6 +54,9 @@ export default class World
     {
         if (this.bouncingLogo)
             this.bouncingLogo.update()
+        
+        if (this.pcScreen)
+            this.pcScreen.update()
     }
 
     destroy()
