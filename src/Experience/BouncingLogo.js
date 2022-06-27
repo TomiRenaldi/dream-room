@@ -30,7 +30,7 @@ export default class BouncingLogo
 
         this.model.group = new THREE.Group()
         this.model.group.position.x = 2.283
-        this.model.group.position.y = 9.238
+        this.model.group.position.y = 9.233
         this.model.group.position.z = -9.970
         this.scene.add(this.model.group)
 
@@ -41,12 +41,13 @@ export default class BouncingLogo
 
         this.model.material = new THREE.MeshBasicMaterial({
             transparent: true,
+            premultipliedAlpha: true,
             map: this.model.texture
         })
 
         this.model.mesh = new THREE.Mesh(this.model.geometry, this.model.material)
-        this.model.mesh.scale.x = 0.294
-        this.model.mesh.scale.y = 0.435
+        this.model.mesh.scale.x = 0.316
+        this.model.mesh.scale.y = 0.359
         this.model.group.add(this.model.mesh)
 
         // Debug
@@ -102,12 +103,63 @@ export default class BouncingLogo
         this.animation.y = 0
 
         this.animation.limits = {}
-        this.animation.limits.x = { min: -2, max: 2 }
-        this.animation.limits.y = { min: -1, max: 1 }
+        this.animation.limits.x = { min: -2.152, max: 1.859 }
+        this.animation.limits.y = { min: -1.055, max: 1.011 }
 
         this.animation.speed = {}
-        this.animation.speed.x = 0.001234
-        this.animation.speed.y = 0.0004
+        this.animation.speed.x = 0.00061
+        this.animation.speed.y = 0.00037
+
+        if (this.debug)
+        {
+            this.debugFolder.addInput(
+                this.animation.limits.x,
+                'min',
+                {
+                    label: 'limitXMin', min: - 3, max: 0, step: 0.001
+                }
+            )
+
+            this.debugFolder.addInput(
+                this.animation.limits.x,
+                'max',
+                {
+                    label: 'limitXMax', min: 0, max: 3, step: 0.001
+                }
+            )
+
+            this.debugFolder.addInput(
+                this.animation.limits.y,
+                'min',
+                {
+                    label: 'limitYMin', min: - 3, max: 0, step: 0.001
+                }
+            )
+
+            this.debugFolder.addInput(
+                this.animation.limits.y,
+                'max',
+                {
+                    label: 'limitYMax', min: 0, max: 3, step: 0.001
+                }
+            )
+
+            this.debugFolder.addInput(
+                this.animation.speed,
+                'x',
+                {
+                    label: 'speedX', min: 0, max: 0.001, step: 0.00001
+                }
+            )
+
+            this.debugFolder.addInput(
+                this.animation.speed,
+                'y',
+                {
+                    label: 'speedY', min: 0, max: 0.001, step: 0.00001
+                }
+            )
+        }
     }
 
     update()
@@ -115,13 +167,27 @@ export default class BouncingLogo
         this.animation.x += this.animation.speed.x * this.time.delta
         this.animation.y += this.animation.speed.y * this.time.delta
 
-        if (this.animation.x > this.animation.limits.x.max || this.animation.x < this.animation.limits.x.min)
+        if (this.animation.x > this.animation.limits.x.max)
         {
+            this.animation.x = this.animation.limits.x.max
             this.animation.speed.x *= -1
         }
 
-        if (this.animation.y > this.animation.limits.y.max || this.animation.y < this.animation.limits.y.min)
+        if (this.animation.x < this.animation.limits.x.min)
         {
+            this.animation.x = this.animation.limits.x.min
+            this.animation.speed.x *= -1
+        }
+
+        if (this.animation.y > this.animation.limits.y.max)
+        {
+            this.animation.y = this.animation.limits.y.max
+            this.animation.speed.y *= -1
+        }
+
+        if (this.animation.y < this.animation.limits.y.min)
+        {
+            this.animation.y = this.animation.limits.y.min
             this.animation.speed.y *= -1
         }
 
