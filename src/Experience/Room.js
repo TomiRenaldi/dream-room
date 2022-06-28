@@ -8,6 +8,8 @@ export default class Room
         this.experience = new Experience()
         this.resources = this.experience.resources
         this.scene = this.experience.scene
+        this.debug = this.experience.debug
+        this.world = this.experience.world
         this.time = this.experience.time
 
         this.setModel()

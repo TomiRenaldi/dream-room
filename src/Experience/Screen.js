@@ -28,6 +28,7 @@ export default class Screen
         this.model.element.playsInline = true 
         this.model.element.autoplay = true
         this.model.element.src = this.sourcePath
+        this.model.element.play()
 
         // Texture
         this.model.texture = new THREE.VideoTexture(this.model.element)
@@ -48,6 +49,5 @@ export default class Screen
 
     update()
     {
-        this.model.element.play()
     }
 }
