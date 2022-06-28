@@ -17,7 +17,7 @@ export default class Room
     setModel()
     {
         this.model = {}
-        this.model.mesh = this.resources.items.roomModel.scene
+        this.model.mesh = this.resources.items.roomModel.scene.children[0]
         this.scene.add(this.model.mesh)
     }
 
