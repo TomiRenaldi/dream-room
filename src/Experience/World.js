@@ -1,4 +1,3 @@
-import * as THREE from 'three'
 import Experience from './Experience.js'
 import Room from './Room.js'
 import BouncingLogo from './BouncingLogo.js'
@@ -38,7 +37,7 @@ export default class World
     {
         this.screen = new Screen(
             this.resources.items.pcScreenModel.scene.children[0],
-            '/assets/mobilelegends-360fps-2000bit.mp4'
+            '/assets/mobileLegends-360fps-2000bit.mp4'
         )
     }
 

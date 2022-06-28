@@ -1,0 +1,11 @@
+Model Information:
+* title:	My room
+* source:	https://sketchfab.com/3d-models/my-room-109790fce06a4ff3b4b96c2c2cfcc33e
+* author:	Oleaf (https://sketchfab.com/homkahom0)
+
+Model License:
+* license type:	CC-BY-NC-4.0 (http://creativecommons.org/licenses/by-nc/4.0/)
+* requirements:	Author must be credited. No commercial use.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "My room" (https://sketchfab.com/3d-models/my-room-109790fce06a4ff3b4b96c2c2cfcc33e) by Oleaf (https://sketchfab.com/homkahom0) licensed under CC-BY-NC-4.0 (http://creativecommons.org/licenses/by-nc/4.0/)

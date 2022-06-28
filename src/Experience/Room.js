@@ -17,7 +17,7 @@ export default class Room
     setModel()
     {
         this.model = {}
-        this.model.mesh = this.resources.items.roomModel.scene
+        this.model.mesh = this.resources.items.roomModel.scene.children[0]
         this.scene.add(this.model.mesh)
     }
 
@@ -25,7 +25,7 @@ export default class Room
     {
         this.lights = {}
 
-        this.lights.directional = new THREE.DirectionalLight('#969696', 0.1)
+        this.lights.directional = new THREE.DirectionalLight('#969696', 0.195)
         this.lights.directional.position.set(0.5, 0.5, 0.5)
         this.scene.add(this.lights.directional)
 
@@ -59,6 +59,5 @@ export default class Room
 
     update()
     {
-        this.lights.point  
     }
 }
