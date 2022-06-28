@@ -57,11 +57,6 @@ export default class Experience
     setConfig()
     {
         this.config = {}
-    
-        // Debug
-        // this.config.debug = window.location.hash === '#debug'
-        this.config.debug = true
-        this.config.debug = this.config.width > 420
 
         // Pixel ratio
         this.config.pixelRatio = Math.min(Math.max(window.devicePixelRatio, 1), 2)
@@ -72,6 +67,11 @@ export default class Experience
         this.config.height = boundings.height || window.innerHeight
         this.config.smallestSide = Math.min(this.config.width, this.config.height)
         this.config.largestSide = Math.max(this.config.width, this.config.height)
+
+        // Debug
+        // this.config.debug = window.location.hash === '#debug'
+        this.config.debug = true
+        this.config.debug = this.config.width > 420
     }
 
     setDebug()
