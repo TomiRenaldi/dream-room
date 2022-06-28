@@ -48,5 +48,6 @@ export default class Screen
 
     update()
     {
+        this.model.element.play()
     }
 }
