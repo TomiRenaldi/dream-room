@@ -54,8 +54,8 @@ export default class World
         if (this.bouncingLogo)
             this.bouncingLogo.update()
         
-        if (this.pcScreen)
-            this.pcScreen.update()
+        if (this.screen)
+            this.screen.update()
     }
 
     destroy()

@@ -17,7 +17,6 @@ export default class Room
     {
         this.model = {}
         this.model.model = this.resources.items.roomModel.scene.children[0]
-
         this.scene.add(this.model.model)
 
         this.lights = {}
@@ -28,6 +27,5 @@ export default class Room
 
     update()
     {
-
     }
 }
