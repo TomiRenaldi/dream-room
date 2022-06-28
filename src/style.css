@@ -31,3 +31,7 @@ body
 .credits a {
     color: inherit;
 }
+
+.inspired {
+    color: rgb(88, 216, 255);
+}
