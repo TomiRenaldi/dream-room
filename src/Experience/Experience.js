@@ -59,7 +59,9 @@ export default class Experience
         this.config = {}
     
         // Debug
-        this.config.debug = window.location.hash === '#debug'
+        // this.config.debug = window.location.hash === '#debug'
+        this.config.debug = true
+        this.config.debug = this.config.width > 420
 
         // Pixel ratio
         this.config.pixelRatio = Math.min(Math.max(window.devicePixelRatio, 1), 2)
