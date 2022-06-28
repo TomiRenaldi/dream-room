@@ -1,7 +1,7 @@
 # Dream Room
 
-- [Github](https://github.com/TomiRenaldi/dream-room)
 - [Live](http://dream-room.vercel.app/)
+- [Github](https://github.com/TomiRenaldi/dream-room)
 
 ## Setup
 Download [Node.js](https://nodejs.org/en/download/).
