@@ -17,3 +17,17 @@ body
     width: 100vw;
     height: 100vh;
 }
+
+.credits {
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    color: #ffffff;
+    text-align: right;
+    font-family: 'Poppins', sans-serif;
+    font-size: 3vmin;
+}
+
+.credits a {
+    color: inherit;
+}
