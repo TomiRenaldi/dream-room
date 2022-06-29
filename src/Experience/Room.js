@@ -9,11 +9,16 @@ export default class Room
         this.resources = this.experience.resources
         this.scene = this.experience.scene
         this.debug = this.experience.debug
-        this.world = this.experience.world
-        this.time = this.experience.time
+
+        // Debug
+        this.debugFolder = this.debug.addFolder({
+            title: 'lights',
+            expanded: false
+        })
 
         this.setModel()
-        this.setLights()
+        this.setDirectionalLights()
+        this.setPointLights()
     }
 
     setModel()
@@ -23,40 +28,70 @@ export default class Room
         this.scene.add(this.model.mesh)
     }
 
-    setLights()
+    setDirectionalLights()
     {
-        this.lights = {}
+        this.directional = {}
+        this.directional.lights = new THREE.DirectionalLight(0xffffff, 0.1)
+        this.directional.lights.position.set(2, 2, 2)
+        this.scene.add(this.directional.lights)
+    }
+    
+    setPointLights() {
+        // Setup
+        this.pointLight = {}
+        this.pointLight.color = '#ffffff'
 
-        this.lights.directional = new THREE.DirectionalLight('#969696', 0.195)
-        this.lights.directional.position.set(0.5, 0.5, 0.5)
-        this.scene.add(this.lights.directional)
+        // Instance
+        this.pointLight.instance = new THREE.PointLight(0xffffff, 15.22, 0, 2.39)
+        this.pointLight.instance.position.y = 8.70
+        this.pointLight.instance.position.z = -11.30
+        this.pointLight.instance.shadow.mapSize.set(128, 128)
+        this.pointLight.instance.castShadow = true
+        this.scene.add(this.pointLight.instance)
 
-        this.lights.point = new THREE.PointLight('#1eff00', 8, 8)
-        this.lights.point.position.set(0, 9, -11.200)
-        this.lights.point.castShadow = true
-        this.lights.point.shadow.mapSize.width = 64
-        this.lights.point.shadow.mapSize.height = 64
-        this.lights.point.shadow.camera.near = 0.5 
-        this.lights.point.shadow.camera.far = 500 
-        this.scene.add(this.lights.point)
+        // Debug
+        const debugFolder = this.debugFolder.addFolder({
+            title: 'pointLight',
+            expanded: false,
+        })
 
-        this.lights.point2 = new THREE.PointLight('#ff0000', 8, 8)
-        this.lights.point2.position.set(-3, 9, -11.200)
-        this.lights.point2.castShadow = true
-        this.lights.point2.shadow.mapSize.width = 64
-        this.lights.point2.shadow.mapSize.height = 64
-        this.lights.point2.shadow.camera.near = 0.5 
-        this.lights.point2.shadow.camera.far = 500 
-        this.scene.add(this.lights.point2)
+        debugFolder
+            .addInput(
+                this.pointLight,
+                'color',
+                { view: 'color' }
+            )
+            .on('change', () => {
+                this.pointLight.instance.color.set(this.pointLight.color)
+            })
 
-        this.lights.point3 = new THREE.PointLight('#0000ff', 8, 8)
-        this.lights.point3.position.set(3, 9, -11.200)
-        this.lights.point3.castShadow = true
-        this.lights.point3.shadow.mapSize.width = 64
-        this.lights.point3.shadow.mapSize.height = 64
-        this.lights.point3.shadow.camera.near = 0.5 
-        this.lights.point3.shadow.camera.far = 500 
-        this.scene.add(this.lights.point3)
+        debugFolder
+            .addInput(
+                this.pointLight.instance,
+                'intensity',
+                { min: 0, max: 200 }
+            )
+
+        debugFolder
+            .addInput(
+                this.pointLight.instance,
+                'decay',
+                { min: 0, max: 10 }
+            )
+
+        debugFolder
+            .addInput(
+                this.pointLight.instance.position,
+                'y',
+                { min: - 10, max: 10 }
+            )
+
+        debugFolder
+            .addInput(
+                this.pointLight.instance.position,
+                'z',
+                { min: - 20, max: 20 }
+            )
     }
 
     update()
