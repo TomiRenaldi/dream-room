@@ -168,8 +168,8 @@ export default class Navigation
             this.view.zoomIn(normalized.pixelY)
         }
 
-        window.addEventListener('mousewheel', this.view.onWheel, { passive: false })
-        window.addEventListener('wheel', this.view.onWheel, { passive: false })
+        window.addEventListener('mousewheel', this.view.onWheel, { passive: true })
+        window.addEventListener('wheel', this.view.onWheel, { passive: true })
     }
 
     update()
