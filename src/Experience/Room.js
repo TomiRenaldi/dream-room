@@ -8,13 +8,6 @@ export default class Room
         this.experience = new Experience()
         this.resources = this.experience.resources
         this.scene = this.experience.scene
-        this.debug = this.experience.debug
-
-        // Debug
-        this.debugFolder = this.debug.addFolder({
-            title: 'lights',
-            expanded: false
-        })
 
         this.setModel()
         this.setDirectionalLights()
@@ -48,50 +41,6 @@ export default class Room
         this.pointLight.instance.shadow.mapSize.set(128, 128)
         this.pointLight.instance.castShadow = true
         this.scene.add(this.pointLight.instance)
-
-        // Debug
-        const debugFolder = this.debugFolder.addFolder({
-            title: 'pointLight',
-            expanded: false,
-        })
-
-        debugFolder
-            .addInput(
-                this.pointLight,
-                'color',
-                { view: 'color' }
-            )
-            .on('change', () => {
-                this.pointLight.instance.color.set(this.pointLight.color)
-            })
-
-        debugFolder
-            .addInput(
-                this.pointLight.instance,
-                'intensity',
-                { min: 0, max: 200 }
-            )
-
-        debugFolder
-            .addInput(
-                this.pointLight.instance,
-                'decay',
-                { min: 0, max: 10 }
-            )
-
-        debugFolder
-            .addInput(
-                this.pointLight.instance.position,
-                'y',
-                { min: - 10, max: 10 }
-            )
-
-        debugFolder
-            .addInput(
-                this.pointLight.instance.position,
-                'z',
-                { min: - 20, max: 20 }
-            )
     }
 
     update()
