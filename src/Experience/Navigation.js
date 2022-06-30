@@ -118,8 +118,6 @@ export default class Navigation
         */
         this.view.onTouchStart = (_event) =>
         {
-            _event.preventDefault()
-
             this.view.drag.alternative = _event.touches.length > 1
 
             this.view.down(_event.touches[0].clientX, _event.touches[0].clientY)
@@ -130,14 +128,12 @@ export default class Navigation
 
         this.view.onTouchMove = (_event) =>
         {
-            _event.preventDefault()
 
             this.view.move(_event.touches[0].clientX, _event.touches[0].clientY)
         }
 
         this.view.onTouchEnd = (_event) =>
         {
-            _event.preventDefault()
 
             this.view.up()
 
@@ -152,7 +148,6 @@ export default class Navigation
          */
         this.view.onContextMenu = (_event) =>
         {
-            _event.preventDefault()
         }
 
         window.addEventListener('contextmenu', this.view.onContextMenu)
@@ -162,14 +157,12 @@ export default class Navigation
          */
         this.view.onWheel = (_event) =>
         {
-            _event.preventDefault()
-
             const normalized = normalizeWheel(_event)
             this.view.zoomIn(normalized.pixelY)
         }
 
-        window.addEventListener('mousewheel', this.view.onWheel, { passive: true })
-        window.addEventListener('wheel', this.view.onWheel, { passive: true })
+        window.addEventListener('mousewheel', this.view.onWheel, { passive: false })
+        window.addEventListener('wheel', this.view.onWheel, { passive: false })
     }
 
     update()
