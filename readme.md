@@ -1,7 +1,6 @@
-# Dream Room
+# Three.js - Template - Complex
 
-- [Live](http://dream-room.vercel.app/)
-- [Github](https://github.com/TomiRenaldi/dream-room)
+🚧 This template is under construction
 
 ## Setup
 Download [Node.js](https://nodejs.org/en/download/).

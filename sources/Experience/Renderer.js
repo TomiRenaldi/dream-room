@@ -15,6 +15,12 @@ export default class Renderer
         this.sizes = this.experience.sizes
         this.scene = this.experience.scene
         this.camera = this.experience.camera
+
+        // Debug
+        if(this.debug)
+        {
+            this.debugFolder = this.debug.addFolder('renderer')
+        }
         
         this.usePostprocess = false
 
@@ -42,9 +48,12 @@ export default class Renderer
         this.instance.setPixelRatio(this.config.pixelRatio)
 
         this.instance.physicallyCorrectLights = true
+        // this.instance.gammaOutPut = true
         this.instance.outputEncoding = THREE.sRGBEncoding
-        this.instance.shadowMap.type = THREE.PCFSoftShadowMap
-        this.instance.shadowMap.enabled = false
+        // this.instance.shadowMap.type = THREE.PCFSoftShadowMap
+        // this.instance.shadowMap.enabled = false
+        this.instance.toneMapping = THREE.NoToneMapping
+        this.instance.toneMappingExposure = 1
 
         this.context = this.instance.getContext()
 
@@ -52,6 +61,49 @@ export default class Renderer
         if(this.stats)
         {
             this.stats.setRenderPanel(this.context)
+        }
+        
+        // Debug
+        if(this.debug)
+        {
+            this.debugFolder
+                .addColor(
+                    this,
+                    'clearColor'
+                )
+                .onChange(() =>
+                {
+                    this.instance.setClearColor(this.clearColor)
+                })
+
+            this.debugFolder
+                .add(
+                    this.instance,
+                    'toneMapping',
+                    {
+                        'NoToneMapping': THREE.NoToneMapping,
+                        'LinearToneMapping': THREE.LinearToneMapping,
+                        'ReinhardToneMapping': THREE.ReinhardToneMapping,
+                        'CineonToneMapping': THREE.CineonToneMapping,
+                        'ACESFilmicToneMapping': THREE.ACESFilmicToneMapping
+                    }
+                )
+                .onChange(() =>
+                {
+                    this.scene.traverse((_child) =>
+                    {
+                        if(_child instanceof THREE.Mesh)
+                            _child.material.needsUpdate = true
+                    })
+                })
+                
+            this.debugFolder
+                .add(
+                    this.instance,
+                    'toneMappingExposure'
+                )
+                .min(0)
+                .max(10)
         }
     }
 
@@ -67,9 +119,7 @@ export default class Renderer
         /**
          * Effect composer
          */
-        const RenderTargetClass = this.config.pixelRatio >= 2 ? THREE.WebGLRenderTarget : THREE.WebGLMultisampleRenderTarget
-        // const RenderTargetClass = THREE.WebGLRenderTarget
-        this.renderTarget = new RenderTargetClass(
+        this.renderTarget = new THREE.WebGLRenderTarget(
             this.config.width,
             this.config.height,
             {
@@ -77,7 +127,8 @@ export default class Renderer
                 minFilter: THREE.LinearFilter,
                 magFilter: THREE.LinearFilter,
                 format: THREE.RGBFormat,
-                encoding: THREE.sRGBEncoding
+                encoding: THREE.sRGBEncoding,
+                samples: 2
             }
         )
         this.postProcess.composer = new EffectComposer(this.instance, this.renderTarget)
